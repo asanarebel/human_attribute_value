@@ -33,7 +33,7 @@ module HumanAttributeValue
       defaults << value.try(:humanize) || value
 
       options[:default] = defaults
-      I18n.translate(defaults.shift, options)
+      I18n.translate(defaults.shift, **options)
     end
   end
 
@@ -42,9 +42,9 @@ module HumanAttributeValue
 
     if value.present?
       if value.is_a?(Array)
-        value.map { |el| self.class.human_attribute_value(attribute, el, options) }
+        value.map { |el| self.class.human_attribute_value(attribute, el, **options) }
       else
-        self.class.human_attribute_value(attribute, value, options)
+        self.class.human_attribute_value(attribute, value, **options)
       end
     end
   end
